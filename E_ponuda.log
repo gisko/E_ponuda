@@ -1,0 +1,21 @@
+0 [pool-3-thread-1] INFO  - UPDATE CHECK: Check for change date in active offers at Thu Feb 26 17:20:55 CET 2015
+ 0 [pool-3-thread-1] INFO  - UPDATE CHECK: Check for change date in active offers at Sat Feb 28 00:43:17 CET 2015
+ 13957 [http-bio-8080-exec-1] INFO  - LOGIN: Buyer sima is loged in
+ 24140 [http-bio-8080-exec-1] INFO  - PAYMENT: 5 is added!
+ 28882 [http-bio-8080-exec-3] INFO  - LOGOUT: User logout!
+ 34760 [http-bio-8080-exec-4] INFO  - LOGIN: Admin is logged in
+ 43108 [http-bio-8080-exec-5] INFO  - PAYENT/OFFER: payment with Avatar 2 is edited!
+ 43166 [http-bio-8080-exec-5] INFO  - COUPON: 3xgqf-0j2f2r6kta-ju5nais added!
+ 43275 [http-bio-8080-exec-5] INFO  - MAIL SENT:  Mail was sent successfully
+ 48643 [http-bio-8080-exec-6] INFO  - COUPON: 3xgqf-0j2f2r6kta-ju5na is ACTIVE: false | USED: false
+ 49855 [http-bio-8080-exec-6] INFO  - COUPON: 3xgqf-0j2f2r6kta-ju5na is ACTIVE: true | USED: false
+ 0 [pool-3-thread-1] INFO  - UPDATE CHECK: Check for change date in active offers at Sat Feb 28 00:49:48 CET 2015
+ 9935 [http-bio-8080-exec-6] INFO  - LOGIN: Invalid username/password.
+ 21520 [http-bio-8080-exec-6] INFO  - LOGIN: Buyer sima is loged in
+ 30046 [http-bio-8080-exec-9] INFO  - PAYMENT: 5 is added!
+ 34645 [http-bio-8080-exec-9] INFO  - LOGOUT: User logout!
+ 39867 [http-bio-8080-exec-9] INFO  - LOGIN: Admin is logged in
+ 53304 [http-bio-8080-exec-9] INFO  - PAYENT/OFFER: payment with Nike is edited!
+ 53368 [http-bio-8080-exec-9] INFO  - COUPON: 1efvy-2da2z7y8f2-94yy6is added!
+ 53461 [http-bio-8080-exec-9] INFO  - MAIL SENT:  Mail was sent successfully
+ 

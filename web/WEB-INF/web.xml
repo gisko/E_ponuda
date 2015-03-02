@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+      
+   <welcome-file-list>
+   		<welcome-file>UpdateOffersServlet</welcome-file>
+   </welcome-file-list>
+   
+    <servlet>
+      <servlet-name>LoginServlet</servlet-name>
+      <servlet-class>servlet.LoginServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>LoginServlet</servlet-name>
+      <url-pattern>/LoginServlet</url-pattern>
+   </servlet-mapping>
+   
+    <servlet>
+      <servlet-name>UpdateOffersServlet</servlet-name>
+      <servlet-class>servlet.UpdateOffersServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>UpdateOffersServlet</servlet-name>
+      <url-pattern>/UpdateOffersServlet</url-pattern>
+   </servlet-mapping>
+   
+  	
+   <servlet>
+      <servlet-name>DownloadImageServlet</servlet-name>
+      <servlet-class>servlet.DownloadImageServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>DownloadImageServlet</servlet-name>
+      <url-pattern>/DownloadImageServlet</url-pattern>
+   </servlet-mapping>
+  
+   <servlet>
+      <servlet-name>Home</servlet-name>
+      <servlet-class>servlet.Home</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>Home</servlet-name>
+      <url-pattern>/Home</url-pattern>
+   </servlet-mapping>
+   
+    <servlet>
+      <servlet-name>RegisterServlet</servlet-name>
+      <servlet-class>servlet.RegisterServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>RegisterServlet</servlet-name>
+      <url-pattern>/RegisterServlet</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
+      <servlet-name>LogoutServlet</servlet-name>
+      <servlet-class>servlet.LogoutServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>LogoutServlet</servlet-name>
+      <url-pattern>/LogoutServlet</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
+      <servlet-name>ShowOfferServlet</servlet-name>
+      <servlet-class>servlet.ShowOfferServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>ShowOfferServlet</servlet-name>
+      <url-pattern>/ShowOfferServlet</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
+      <servlet-name>CategoryServlet</servlet-name>
+      <servlet-class>servlet.CategoryServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>CategoryServlet</servlet-name>
+      <url-pattern>/CategoryServlet</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
+      <servlet-name>OfferServlet</servlet-name>
+      <servlet-class>servlet.OfferServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>OfferServlet</servlet-name>
+      <url-pattern>/OfferServlet</url-pattern>
+   </servlet-mapping>
+   
+    <servlet>
+      <servlet-name>CouponsServlet</servlet-name>
+      <servlet-class>servlet.CouponsServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>CouponsServlet</servlet-name>
+      <url-pattern>/CouponsServlet</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
+      <servlet-name>PaymentServlet</servlet-name>
+      <servlet-class>servlet.PaymentServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>PaymentServlet</servlet-name>
+      <url-pattern>/PaymentServlet</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
+      <servlet-name>BranchServlet</servlet-name>
+      <servlet-class>servlet.BranchServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>BranchServlet</servlet-name>
+      <url-pattern>/BranchServlet</url-pattern>
+   </servlet-mapping>
+   
+    <servlet>
+      <servlet-name>ShowServlet</servlet-name>
+      <servlet-class>servlet.ShowServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>ShowServlet</servlet-name>
+      <url-pattern>/ShowServlet</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
+      <servlet-name>CommentServlet</servlet-name>
+      <servlet-class>servlet.CommentServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>CommentServlet</servlet-name>
+      <url-pattern>/CommentServlet</url-pattern>
+   </servlet-mapping>
+   
+    <servlet>
+      <servlet-name>RemoveServlet</servlet-name>
+      <servlet-class>servlet.RemoveServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>RemoveServlet</servlet-name>
+      <url-pattern>/RemoveServlet</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
+      <servlet-name>RssLast5Servlet</servlet-name>
+      <servlet-class>servlet.RssLast5Servlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>RssLast5Servlet</servlet-name>
+      <url-pattern>/RssLast5Servlet</url-pattern>
+   </servlet-mapping>
+
+   <error-page>
+		<exception-type>
+			java.lang.Throwable
+		</exception-type>
+		<location>/error.jsp</location>
+   </error-page>
+   <error-page>
+   		<error-code>404</error-code>
+   		<location>/404.jsp</location>
+   </error-page> 
+</web-app>
+

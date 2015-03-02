@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+    <display-name>E_ponuda</display-name>
+    
+    <module>
+        <web>
+            <web-uri>E_ponuda.war</web-uri>
+            <context-root>/E_ponuda</context-root>
+        </web>
+    </module>
+
+    <module>
+        <ejb>E_ponuda.jar</ejb>
+    </module>
+</application>

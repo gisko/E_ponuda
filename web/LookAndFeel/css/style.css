@@ -1,0 +1,102 @@
+	
+	
+	body { 
+			background-image: url(backImg.jpg);
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-attachment: fixed;
+		
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+
+			background-size: cover;
+		}
+			
+	.dropdown-menu{
+			background-color: #122221;
+			color:#fff; 
+		}
+	.dropdown-toggle:active, .open .dropdown-toggle {
+			background:#122221 !important;
+			color:green !important;
+		}
+	
+	.dropdown-menu li>a{
+			color:white;
+		}
+				
+	#nav_pills li>a{
+			color:black;
+			}
+			
+	#nav_pills li:hover> a{
+			color: green;
+			background-color:black;
+			}
+			
+	#nav_pills  li.active > a {
+			background-color:black;
+			color: green;
+			}
+
+	#userHover  a:hover{
+			background-color:#122221;
+			color: green;
+			}
+			
+	#adminHover a:hover{
+			background-color:#122221;
+			color: green;
+			}
+
+	#gost a{
+			color: green;
+			}
+			
+	#navigacija a{
+			color: white;
+			}
+			
+	#navigacija a:hover{
+			color: green;
+			}
+	#jumbo {
+		color:black;
+		
+		border-style: none;
+		}
+	
+	.jumbotron{
+		background-image: url(jumbo.jpg);
+		color:Green;
+		}		
+				
+	#firstPageTab {
+		border-style: solid;
+		background-color:black;
+		color: green;
+	}
+	
+	.myTable{
+	 background-color: #CECACD;
+	 
+	}
+	.panel > .panel-heading {
+   		 background-image: none;
+    	background-color: #122221;
+	}
+	.myTable tr:hover,tr.alt:hover{
+    	background: #ADAAAC!important;	
+	}
+
+	.img-center {margin:0 auto;}
+	#nav_2 { min-height:30px !important;
+			}
+			
+	#nav_2 li>a{
+	padding-top:2px !important; padding-bottom:2px !important;
+	}		
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}

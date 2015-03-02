@@ -1,0 +1,344 @@
+Fakultet tehniÄ�kih nauka / Katedra za informatiku
+Internet softverske arhitekture / 2014/2015.
+=================================
+
+1. Lokacija primera
+-------------------
+rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.client
+rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet
+rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity
+rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session
+rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.util
+messages
+web
+WEB-INF
+META-INF
+
+2. Opis primera
+---------------
+Primer kompletne web aplikacije koja se sastoji iz sledecih delova:
+- servleti koji predstavljaju kontrolere u web aplikaciji sa MVC arhitekturom, 
+  pristupaju session bean-ovima
+- JSP stranice koje predstavljaju prikaze (view) u MVC modelu
+- entity klase kao model podataka aplikacije (anotirane perzistentne klase) 
+- session bean-ovi za realizaciju business logike
+- konfiguracioni fajlovi za razlicite delove sistema
+
+3. Sadrzaj primera
+------------------
+jsp/*         			- JSP stranice kao view iz MVC modela
+*.servlet.*    			- servleti kao kontroleri iz MVC modela
+*.entity.*      		- anotirane perzistentne klase
+*.session.*     		- klasa koje realizuju business logiku
+*.util.*        		- Klase koje sluze kao servisi klasama iz drugih paketa (usluzne klase)
+*.client.*				- pozivanje metode session bean-a
+messages.*				- lokalizovane poruke koje su vidljive u jsp stranama
+WEB-INF/web.xml    		- konfiguracioni fajl za web aplikaciju
+META-INF/persistence.xml - konfiguracija entity managera
+META-INF/application.xml - konfiguracija cele aplikacije
+log4j.properties		- konfiguracija log4j
+jndi.properties			- konfiguracija JNDI klijenta
+
+4. Pokretanje primera
+---------------------
+[] ant deploy
+[] ant prepare-database
+http://localhost:8080/E_ponuda/
+
+(Napomena: neophodno je izmeniti podatke u build.properites, pokrenuti MySQL server unutar koga je kreirana odgovarajuca baza podataka i pokrenuti Tomee server)
+
+
+==========================Kopiraj svoj tomee======================================
+--Tomee u conf
+
+<Resource id="My Unmanaged DataSource" type="DataSource">
+  JdbcDriver com.mysql.jdbc.Driver
+  JdbcUrl jdbc:mysql://192.168.0.2:3306/ra_44_2011?autoReconnect=true
+  UserName ra_44_2011
+  Password ra_44_2011
+  JtaManaged false
+</Resource>
+
+<Resource id="My DataSource" type="DataSource">
+  JdbcDriver com.mysql.jdbc.Driver
+  JdbcUrl jdbc:mysql://192.168.0.2:3306/ra_44_2011?autoReconnect=true
+  UserName ra_44_2011
+  Password ra_44_2011
+  JtaManaged true
+</Resource>
+
+======================LINUX COMMANDS=========================
+----Comande za linux
+u bin:
+	sh ./startup.sh
+	sh ./shutdown.sh
+	
+u logs:
+	tail -f catalina.out
+=============================================================	
+
+Za krerianje konekcije svuda stavi ra_44_2011
+i za adresu stavi: 192.168.0.2:3306
+Kopiraj svoj lib iz tomcet-a
+
+===============Cuva slike nakon clean========================
+Promeni putanju za slike(img) u downloadImageServlet!
+=============================================================
+
+======MAIL - za REMOTE? ako ne radi, onda probaj ovo==========
+1. u tomee.xml zameniti localhost sa ip adresom lokalnog racunara koju je dobio od mreznog interfejsa preko kojeg ce remote racunar slati poruke
+
+Izmene u tomee.xml za racunare u Park City-u
+<Resource id="MyJmsResourceAdapter" type="ActiveMQResourceAdapter">
+    BrokerXmlConfig =  broker:(tcp://192.168.0.XX:61616)
+    ServerUrl       =  tcp://192.168.0.XX:61616
+    DataSource      =  My Unmanaged DataSource
+</Resource> 
+
+gde XX treba zameniti sa brojem lokalnog racunara u Park City-u
+
+===========================TOMMEE.xml=========================
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+
+
+<Container id="My Singleton Container" type="SINGLETON">
+  # Specifies the maximum time an invocation could wait for the
+  # singleton bean instance to become available before giving up.
+  #
+  # After the timeout is reached a javax.ejb.ConcurrentAccessTimeoutException
+  # will be thrown.
+  #
+  # Usable time units: nanoseconds, microsecons, milliseconds,
+  # seconds, minutes, hours, days.  Or any combination such as
+  # "1 hour and 27 minutes and 10 seconds"
+
+  AccessTimeout = 30 seconds
+
+</Container>
+
+
+<Container id="My Stateful Container" type="STATEFUL">
+  # Specifies the maximum time an invocation could wait for the
+  # stateful bean instance to become available before giving up.
+  #
+  # After the timeout is reached a javax.ejb.ConcurrentAccessTimeoutException
+  # will be thrown.
+  #
+  # Usable time units: nanoseconds, microsecons, milliseconds,
+  # seconds, minutes, hours, days.  Or any combination such as
+  # "1 hour and 27 minutes and 10 seconds"
+
+  AccessTimeout = 30 seconds
+
+  #  The passivator is responsible for writing beans to disk
+  #  at passivation time. Different passivators can be used
+  #  by setting this property to the fully qualified class name
+  #  of the PassivationStrategy implementation. The passivator
+  #  is not responsible for invoking any callbacks or other
+  #  processing, its only responsibly is to write the bean state
+  #  to disk.
+  #
+  #  Known implementations:
+  #     org.apache.openejb.core.stateful.RAFPassivater
+  #     org.apache.openejb.core.stateful.SimplePassivater
+
+  Passivator   org.apache.openejb.core.stateful.SimplePassivater
+
+  #  Specifies the time to wait between invocations. This
+  #  value is measured in minutes. A value of 5 would
+  #  result in a time-out of 5 minutes between invocations.
+  #  A value of zero would mean no timeout.
+
+  TimeOut  20
+
+  # Specifies the frequency (in seconds) at which the bean cache is checked for
+  # idle beans.
+
+  Frequency 60
+
+  #  Specifies the size of the bean pools for this
+  #  stateful SessionBean container.
+
+  Capacity  1000
+
+  #  Property name that specifies the number of instances
+  #  to passivate at one time when doing bulk passivation.
+  #  Must be less than the PoolSize.
+
+  BulkPassivate  100
+
+</Container>
+
+
+<Container id="My Stateless Container" type="STATELESS">
+
+  # Specifies the time an invokation should wait for an instance
+  # of the pool to become available.
+  #
+  # After the timeout is reached, if an instance in the pool cannot
+  # be obtained, the method invocation will fail.
+  #
+  # Usable time units: nanoseconds, microsecons, milliseconds,
+  # seconds, minutes, hours, days.  Or any combination such as
+  # "1 hour and 27 minutes and 10 seconds"
+
+  AccessTimeout = 30 seconds
+
+  # Specifies the size of the bean pools for this stateless
+  # SessionBean container.  If StrictPooling is not used, instances
+  # will still be created beyond this number if there is demand, but
+  # they will not be returned to the pool and instead will be
+  # immediately destroyed.
+
+  MaxSize = 10
+
+  # Specifies the minimum number of bean instances that should be in
+  # the pool for each bean.  Pools are prefilled to the minimum on
+  # startup.  Note this will create start order dependencies between
+  # other beans that also eagerly start, such as other @Stateless
+  # beans with a minimum or @Singleton beans using @Startup.  The
+  # @DependsOn annotation can be used to appropriately influence
+  # start order.
+  #
+  # The minimum pool size is rigidly maintained.  Instances in the
+  # minimum side of the pool are not eligible for IdleTimeout or
+  # GarbageCollection, but are subject to MaxAge and flushing.
+  #
+  # If the pool is flushed it is immediately refilled to the minimum
+  # size with MaxAgeOffset applied.  If an instance from the minimum
+  # side of the pool reaches its MaxAge, it is also immediately
+  # replaced.  Replacement is done in a background queue using the
+  # number of threads specified by CallbackThreads.
+
+  MinSize = 0
+
+  # StrictPooling tells the container what to do when the pool
+  # reaches it's maximum size and there are incoming requests that
+  # need instances.
+  #
+  # With strict pooling, requests will have to wait for instances to
+  # become available. The pool size will never grow beyond the the
+  # set MaxSize value.  The maximum amount of time a request should
+  # wait is specified via the AccessTimeout setting.
+  #
+  # Without strict pooling, the container will create temporary
+  # instances to meet demand. The instances will last for just one
+  # method invocation and then are removed.
+  #
+  # Setting StrictPooling to false and MaxSize to 0 will result in
+  # no pooling. Instead instances will be created on demand and live
+  # for exactly one method call before being removed.
+
+  StrictPooling = true
+
+  # Specifies the maximum time that an instance should live before
+  # it should be retired and removed from use.  This will happen
+  # gracefully.  Useful for situations where bean instances are
+  # designed to hold potentially expensive resources such as memory
+  # or file handles and need to be periodically cleared out.
+  #
+  # Usable time units: nanoseconds, microsecons, milliseconds,
+  # seconds, minutes, hours, days.  Or any combination such as
+  # "1 hour and 27 minutes and 10 seconds"
+
+  MaxAge = 0 hours
+
+  # Specifies the maximum time that an instance should be allowed to
+  # sit idly in the pool without use before it should be retired and
+  # removed.
+  #
+  # Usable time units: nanoseconds, microsecons, milliseconds,
+  # seconds, minutes, hours, days.  Or any combination such as
+  # "1 hour and 27 minutes and 10 seconds"
+
+  IdleTimeout = 0 minutes
+
+</Container>
+
+<Container id="My Message Container" type="MESSAGE">
+
+  # The resource adapter delivers messages to the container
+  # Default value is Default JMS Resource Adapter.
+
+  ResourceAdapter = MyJmsResourceAdapter
+
+  # Specifies the message listener interface handled by this container
+  # Default value is javax.jms.MessageListener.
+
+  MessageListenerInterface = javax.jms.MessageListener
+
+  # Specifies the activation spec class
+  # Default value is org.apache.activemq.ra.ActiveMQActivationSpec.
+
+  ActivationSpecClass = org.apache.activemq.ra.ActiveMQActivationSpec
+
+  # Specifies the maximum number of bean instances that are allowed to 
+  # exist for each MDB deployment.
+  # Default value is 10.
+
+  InstanceLimit = 10
+
+</Container>
+
+<Resource id="MyJmsResourceAdapter" type="ActiveMQResourceAdapter">
+        BrokerXmlConfig =  broker:(tcp://localhost:61616)
+        ServerUrl       =  tcp://localhost:61616
+	DataSource      =  My Unmanaged DataSource
+</Resource>
+
+<!--
+# For more examples of database configuration see:
+# http://openejb.apache.org/containers-and-resources.html
+-->
+
+<Resource id="My Unmanaged DataSource" type="DataSource">
+  JdbcDriver com.mysql.jdbc.Driver
+  JdbcUrl jdbc:mysql://127.0.0.1:3306/ra_44_2011?autoReconnect=true
+  UserName ra_44_2011
+  Password ra_44_2011
+  JtaManaged false
+</Resource>
+
+<Resource id="My DataSource" type="DataSource">
+  JdbcDriver com.mysql.jdbc.Driver
+  JdbcUrl jdbc:mysql://127.0.0.1:3306/ra_44_2011?autoReconnect=true
+  UserName ra_44_2011
+  Password ra_44_2011
+  JtaManaged true
+</Resource>
+
+<Resource id="Mail" type="javax.mail.Session">
+   mail.smtp.host=smtp.gmail.com
+   mail.smtp.port=587
+   mail.transport.protocol=smtp
+   mail.smtp.auth=true
+   mail.smtp.starttls.enable=true
+   mail.smtp.user=eponudaisa
+   password=ra442011
+</Resource>
+
+<Resource id="JmsConnectionFactory" type="javax.jms.ConnectionFactory">
+	ResourceAdapter = MyJmsResourceAdapter
+</Resource>
+
+<Resource id="PaymentQueue" type="javax.jms.Queue">
+	destination=PaymentQueue
+</Resource>
+
+<!--
+#
+#  The <Deployments> element can be used to configure file
+#  paths where OpenEJB should look for ejb jars or ear files.
+#
+#  See http://openejb.apache.org/3.0/deployments.html
+#
+#  The below entry is simply a default and can be changed or deleted
+-->
+<Deployments dir="apps/" />
+
+</tomee>
+
+
